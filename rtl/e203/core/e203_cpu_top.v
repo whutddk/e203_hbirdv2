@@ -331,8 +331,6 @@ module e203_cpu_top(
 
     `ifdef E203_HAS_MEM_ITF
     assign mem_icb_enable = 1'b1;
-    `else
-    assign mem_icb_enable = 1'b0;
     `endif
 
     `ifdef E203_HAS_FIO
