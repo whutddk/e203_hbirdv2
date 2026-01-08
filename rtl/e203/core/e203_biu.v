@@ -929,7 +929,11 @@ module e203_biu(
   );
 
 
-  assign biu_active = ifu2biu_icb_cmd_valid | lsu2biu_icb_cmd_valid | icb_buffer_active; 
+  assign biu_active = 
+    `ifdef E203_HAS_MEM_ITF
+       ifu2biu_icb_cmd_valid | 
+    `endif
+     lsu2biu_icb_cmd_valid | icb_buffer_active; 
 
   ///////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////
