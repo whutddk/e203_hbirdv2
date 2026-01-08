@@ -886,10 +886,17 @@ module e203_cpu #(
 
 
   assign inspect_dbg_irq       = dbg_irq_a;
-  assign inspect_mem_cmd_valid = mem_icb_cmd_valid;
-  assign inspect_mem_cmd_ready = mem_icb_cmd_ready;
-  assign inspect_mem_rsp_valid = mem_icb_rsp_valid;
-  assign inspect_mem_rsp_ready = mem_icb_rsp_ready;
+  `ifdef E203_HAS_MEM_ITF
+    assign inspect_mem_cmd_valid = mem_icb_cmd_valid;
+    assign inspect_mem_cmd_ready = mem_icb_cmd_ready;
+    assign inspect_mem_rsp_valid = mem_icb_rsp_valid;
+    assign inspect_mem_rsp_ready = mem_icb_rsp_ready;
+   `else
+    assign inspect_mem_cmd_valid = 1'b0;
+    assign inspect_mem_cmd_ready = 1'b0;
+    assign inspect_mem_rsp_valid = 1'b0;
+    assign inspect_mem_rsp_ready = 1'b0;
+   `endif
   assign inspect_core_clk   = clk;
   assign core_csr_clk       = clk_core_exu;
 
